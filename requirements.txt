@@ -1,0 +1,6 @@
+aiogram
+aiohttp
+selenium
+requests
+colorama
+faker
