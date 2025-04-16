@@ -146,7 +146,11 @@ def send_to_telegram_support_selenium(data, complaint_text):
         try:
             # Генерация фейковых данных для ФИО и электронной почты с использованием Faker
             fake_name = fake.name()  # Фейковое ФИО
-            fake_email = fake.email()  # Фейковая электронная почта
+            # Генерация email с заменой домена на gmail.com или outlook.com
+            fake_email = fake.email()
+            user_name, _ = fake_email.split('@')  # Разделяем имя пользователя и домен
+            domain = random.choice(["gmail.com", "outlook.com"])  # Выбираем случайный домен
+            fake_email = f"{user_name}@{domain}"  # Собираем email с новым доменом
 
             # Заполняем поле "ФИО"
             legal_name_field = WebDriverWait(driver, 20).until(
